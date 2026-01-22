@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Cache Go modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3  # 更新到 v3
         with:
           path: |
             ~/.cache/go-build
@@ -33,5 +33,11 @@ jobs:
         run: |
           go mod tidy
           go mod vendor
-          go build
-        
+          go build -o myapp  # 输出的文件名为 myapp，修改为你自己的文件名
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: go-fast-${{ matrix.go-version }}-${{ matrix.platform }}  # Artifact 名称，可以根据 go-version 和 platform 动态命名
+          path: go-fast  # 上传构建出来的文件
+          
