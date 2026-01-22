@@ -36,8 +36,7 @@ jobs:
           go build -o myapp  # 输出的文件名为 myapp，修改为你自己的文件名
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # 更新为 v3
         with:
-          name: go-fast-${{ matrix.go-version }}-${{ matrix.platform }}  # Artifact 名称，可以根据 go-version 和 platform 动态命名
-          path: go-fast  # 上传构建出来的文件
-          
+          name: go-fastdfs-${{ matrix.go-version }}-${{ matrix.platform }}  # Artifact 名称，可以根据 go-version 和 platform 动态命名
+          path: go-fastdfs  # 上传构建出来的文件
